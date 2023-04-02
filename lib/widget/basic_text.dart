@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class BasicText extends StatelessWidget {
   final String? label;
   final String? text;
+  final Color? fontColor;
   final TextAlign? textAlign;
 
-  const BasicText({this.label, this.text, this.textAlign, Key? key})
+  const BasicText({this.label, this.text, this.fontColor, this.textAlign, Key? key})
       : super(key: key);
 
   @override
@@ -21,6 +22,9 @@ class BasicText extends StatelessWidget {
     return Text(
       labelText,
       textAlign: textAlign ?? TextAlign.left,
+      style: TextStyle(
+        color: fontColor ?? Colors.black,
+      ),
     );
   }
 
