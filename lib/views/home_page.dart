@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../widget/basic_ink_well.dart';
+import '../widget/basic_text.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -47,4 +50,48 @@ class _HomePageState extends State<HomePage> {
       body: Container(),
     );
   }
+
+  Widget getTopBarMenu() {
+    List<TopBarMenuProperty> topBarMenuList = [
+      TopBarMenuProperty(
+        label: "Discover",
+      ),
+      TopBarMenuProperty(
+        label: "Contact Us",
+      ),
+      TopBarMenuProperty(
+        label: "Sign Up",
+      ),
+      TopBarMenuProperty(
+        label: "Login",
+      ),
+    ];
+    return topBarGenerate(topBarMenuList: topBarMenuList);
+  }
+
+  Widget topBarGenerate({required List<TopBarMenuProperty> topBarMenuList}) {
+    List<Widget> widgetList = [];
+    for (TopBarMenuProperty item in topBarMenuList) {
+      Widget widget = BasicInkWell(
+        onTap: item.onTap,
+        child: BasicText(
+          text: item.label,
+        ),
+      );
+      widgetList.add(widget);
+    }
+    return Row(
+      children: widgetList.toList(),
+    );
+  }
+}
+
+class TopBarMenuProperty {
+  final String? label;
+  final Function(BuildContext context)? onTap;
+
+  TopBarMenuProperty({
+    this.label,
+    this.onTap,
+  });
 }
